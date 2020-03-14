@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ServiceLocator;
 
 namespace HotCode.StrongHold
 {
@@ -17,6 +18,7 @@ namespace HotCode.StrongHold
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddServiceLocator<Program>();
             services.AddControllers();
         }
 
