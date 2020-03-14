@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace HotCode.StrongHold.Systems
 {
     [ApiController]
+    [Produces("application/json")]
     [Route( "api/v{version:apiVersion}/[controller]" )]
     public class BaseController : ControllerBase
     {

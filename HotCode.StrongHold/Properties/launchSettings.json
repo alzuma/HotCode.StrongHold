@@ -4,7 +4,7 @@
     "HotCode.StrongHold": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/v1.0/roles",
+      "launchUrl": "",
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
