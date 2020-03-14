@@ -9,6 +9,8 @@ WORKDIR /src
 COPY ["HotCode.StrongHold/HotCode.StrongHold.csproj", "HotCode.StrongHold/"]
 RUN dotnet restore "HotCode.StrongHold/HotCode.StrongHold.csproj"
 COPY . .
+WORKDIR "/src/HotCode.StrongHold.Tests"
+RUN dotnet test
 WORKDIR "/src/HotCode.StrongHold"
 RUN dotnet build "HotCode.StrongHold.csproj" -c Release -o /app/build
 
