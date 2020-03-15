@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using HotCode.StrongHold.Roles.Messages.Events;
+using HotCode.StrongHold.Systems.Messaging;
 using HotCode.StrongHold.Systems.Messaging.interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -16,7 +17,7 @@ namespace HotCode.StrongHold.Roles.Messages.Handlers
             _logger = logger;
         }
 
-        public Task HandleAsync(RoleCreated @event)
+        public Task HandleAsync(RoleCreated @event, CorrelationContext context)
         {
             _logger.LogInformation($"Role with ID: {@event.Id} was created");
             return Task.CompletedTask;

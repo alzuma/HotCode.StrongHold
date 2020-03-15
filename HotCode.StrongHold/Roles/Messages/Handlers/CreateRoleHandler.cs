@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using HotCode.StrongHold.Roles.Messages.Commands;
 using HotCode.StrongHold.Roles.Messages.Events;
+using HotCode.StrongHold.Systems.Messaging;
 using HotCode.StrongHold.Systems.Messaging.interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -20,10 +20,10 @@ namespace HotCode.StrongHold.Roles.Messages.Handlers
             _busPublisher = busPublisher;
         }
 
-        public async Task HandleAsync(CreateRole command)
+        public async Task HandleAsync(CreateRole command, CorrelationContext context)
         {
             _logger.LogInformation($"Creating role {command.Id} - {command.Name}");
-            await _busPublisher.PublishAsync(new RoleCreated {Id = command.Id, }, null);
+            await _busPublisher.PublishAsync(new RoleCreated {Id = command.Id,}, context);
         }
     }
 }
