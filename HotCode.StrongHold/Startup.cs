@@ -1,6 +1,10 @@
 using System;
 using System.IO;
 using System.Reflection;
+using HotCode.StrongHold.Roles.Messages;
+using HotCode.StrongHold.Roles.Messages.Events;
+using HotCode.StrongHold.Systems.Messaging;
+using HotCode.StrongHold.Systems.Messaging.RedisMq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using ServiceLocator;
+using StackExchange.Redis;
 
 namespace HotCode.StrongHold
 {
@@ -38,6 +43,8 @@ namespace HotCode.StrongHold
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
+
+            services.AddRedisMessaging();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -61,6 +68,9 @@ namespace HotCode.StrongHold
             {
                 endpoints.MapControllers();
             });
+
+            app.UseRedisMessaging()
+                .SubscribeEvent<RoleCreated>();
         }
     }
 }

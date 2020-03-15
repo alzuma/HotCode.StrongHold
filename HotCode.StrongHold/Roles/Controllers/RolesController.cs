@@ -23,7 +23,7 @@ namespace HotCode.StrongHold.Roles.Controllers
         /// <returns>List of roles</returns>
         /// <response code="200">Returns all roles</response>
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<string>),StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get()
         {
             return Ok(await _roleService.RolesAsync());
