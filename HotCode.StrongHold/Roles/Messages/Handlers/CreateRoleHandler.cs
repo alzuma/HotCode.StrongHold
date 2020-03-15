@@ -23,7 +23,7 @@ namespace HotCode.StrongHold.Roles.Messages.Handlers
         public async Task HandleAsync(CreateRole command)
         {
             _logger.LogInformation($"Creating role {command.Id} - {command.Name}");
-            await _busPublisher.PublishAsync(new RoleCreated {Id = command.Id});
+            await _busPublisher.PublishAsync(new RoleCreated {Id = command.Id, }, null);
         }
     }
 }

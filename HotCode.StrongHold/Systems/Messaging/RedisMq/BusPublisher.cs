@@ -16,14 +16,16 @@ namespace HotCode.StrongHold.Systems.Messaging.RedisMq
             _defaultNamespace = redisMqOptions.Namespace;
         }
 
-        public async Task PublishAsync<T>(T @event) where T : IEvent
+        public async Task PublishAsync<T>(T @event, CorrelationContext context) where T : IEvent
         {
-            await _connectionMultiplexer.GetSubscriber().PublishAsync(ChanelName(@event), @event.ToJson());
+            var envelop = Envelope<T>.Create(@event, context);
+            await _connectionMultiplexer.GetSubscriber().PublishAsync(ChanelName(@event), envelop.ToJson());
         }
 
-        public async Task SendAsync<T>(T command) where T : ICommand
+        public async Task SendAsync<T>(T command, CorrelationContext context) where T : ICommand
         {
-            await _connectionMultiplexer.GetSubscriber().PublishAsync(ChanelName(command), command.ToJson());
+            var envelop = Envelope<T>.Create(command, context);
+            await _connectionMultiplexer.GetSubscriber().PublishAsync(ChanelName(command), envelop.ToJson());
         }
 
         private string ChanelName<T>(T message)

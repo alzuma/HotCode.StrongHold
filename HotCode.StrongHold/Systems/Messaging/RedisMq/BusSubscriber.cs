@@ -34,12 +34,13 @@ namespace HotCode.StrongHold.Systems.Messaging.RedisMq
             var subscriber = _connectionMultiplexer.GetSubscriber();
             subscriber.SubscribeAsync(ChanelName<T>(), async (channel, redisValue) =>
             {
+                var envelope = redisValue.FromJson<Envelope<T>>();
+
                 using var scope = _serviceProvider.CreateScope();
-                var @event = redisValue.FromJson<T>();
                 var eventHandler = scope.ServiceProvider.GetRequiredService<IEventHandler<T>>();
-                await TryHandleAsync(@event, () => eventHandler.HandleAsync(@event), onError);
+                await TryHandleAsync(envelope.Message, () => eventHandler.HandleAsync(envelope.Message), onError);
             });
-            
+
             return this;
         }
 
@@ -49,11 +50,10 @@ namespace HotCode.StrongHold.Systems.Messaging.RedisMq
             var subscriber = _connectionMultiplexer.GetSubscriber();
             subscriber.SubscribeAsync(ChanelName<T>(), async (channel, redisValue) =>
             {
+                var envelope = redisValue.FromJson<Envelope<T>>();
                 using var scope = _serviceProvider.CreateScope();
-                var command = redisValue.FromJson<T>();
-                var commandHandler = scope.ServiceProvider.GetRequiredService<ICommandHandler<ICommand>>();
-
-                await TryHandleAsync(command, () => commandHandler.HandleAsync(command), onError);
+                var commandHandler = scope.ServiceProvider.GetRequiredService<ICommandHandler<T>>();
+                await TryHandleAsync(envelope.Message, () => commandHandler.HandleAsync(envelope.Message), onError);
             });
 
             return this;
@@ -76,7 +76,7 @@ namespace HotCode.StrongHold.Systems.Messaging.RedisMq
                 if (exception is HotCodeException hotCodeException && onError != null)
                 {
                     var rejectedEvent = onError(message, hotCodeException);
-                    await _busPublisher.PublishAsync(rejectedEvent);
+                    await _busPublisher.PublishAsync(rejectedEvent, new CorrelationContext());
                     _logger.LogInformation(
                         $"Published a rejected event: '{rejectedEvent.GetType().Name}' for the message: '{messageName}'.");
                 }

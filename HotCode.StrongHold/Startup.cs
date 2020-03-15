@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using HotCode.StrongHold.Roles.Messages;
+using HotCode.StrongHold.Roles.Messages.Commands;
 using HotCode.StrongHold.Roles.Messages.Events;
 using HotCode.StrongHold.Systems.Messaging;
 using HotCode.StrongHold.Systems.Messaging.RedisMq;
@@ -70,7 +71,8 @@ namespace HotCode.StrongHold
             });
 
             app.UseRedisMessaging()
-                .SubscribeEvent<RoleCreated>();
+                .SubscribeEvent<RoleCreated>()
+                .SubscribeCommand<CreateRole>();
         }
     }
 }
