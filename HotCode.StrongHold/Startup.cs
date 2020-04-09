@@ -1,10 +1,12 @@
 using System;
 using System.IO;
 using System.Reflection;
-using HotCode.StrongHold.Roles.Messages;
+using GraphQL;
+using GraphQL.Server;
+using GraphQL.Server.Ui.Playground;
 using HotCode.StrongHold.Roles.Messages.Commands;
 using HotCode.StrongHold.Roles.Messages.Events;
-using HotCode.StrongHold.Systems.Messaging;
+using HotCode.StrongHold.Schemas;
 using HotCode.StrongHold.Systems.Messaging.RedisMq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,7 +16,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using ServiceLocator;
-using StackExchange.Redis;
 
 namespace HotCode.StrongHold
 {
@@ -29,17 +30,25 @@ namespace HotCode.StrongHold
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<RbacSchema>();
+
+            services.AddGraphQL(x => { x.ExposeExceptions = true; })
+                .AddGraphTypes(ServiceLifetime.Scoped)
+                .AddSystemTextJson()
+                .AddDataLoader();
+
             services.AddServiceLocator<Program>();
             services.AddControllers();
-            services.AddApiVersioning(options => { 
+            services.AddApiVersioning(options =>
+            {
                 options.ReportApiVersions = true;
                 options.AssumeDefaultVersionWhenUnspecified = true;
-                options.DefaultApiVersion = new ApiVersion(1,0);
+                options.DefaultApiVersion = new ApiVersion(1, 0);
             });
-            
+
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1.0", new OpenApiInfo { Title = "RBAC", Version = "v1.0" });
+                c.SwaggerDoc("v1.0", new OpenApiInfo {Title = "RBAC", Version = "v1.0"});
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
@@ -57,7 +66,7 @@ namespace HotCode.StrongHold
                 c.RoutePrefix = string.Empty;
             });
 
-            
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -65,14 +74,14 @@ namespace HotCode.StrongHold
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
             app.UseRedisMessaging()
                 .SubscribeEvent<RoleCreated>()
                 .SubscribeCommand<CreateRole>();
+            
+            app.UseGraphQL<RbacSchema>();
+            app.UseGraphQLPlayground(new GraphQLPlaygroundOptions());
         }
     }
 }

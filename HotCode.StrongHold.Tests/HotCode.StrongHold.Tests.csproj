@@ -18,4 +18,8 @@
       <ProjectReference Include="..\HotCode.StrongHold\HotCode.StrongHold.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Roles" />
+    </ItemGroup>
+
 </Project>

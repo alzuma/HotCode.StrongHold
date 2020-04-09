@@ -51,5 +51,12 @@ namespace HotCode.StrongHold.Systems
 
             return model;
         }
+        
+        public static DateTime UnixTimeStampToDate(this long unixTimeStamp)
+        {
+            var date = new DateTime(1970,1,1,0,0,0,0,System.DateTimeKind.Utc);
+            date = date.AddSeconds(unixTimeStamp);
+            return date;
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace HotCode.StrongHold.Roles.Messages.Handlers
 
         public Task HandleAsync(RoleCreated @event, CorrelationContext context)
         {
-            _logger.LogInformation($"Role with ID: {@event.Id} was created");
+            _logger.LogInformation($"Role with ID: {@event.Id} - {@event.Name} was created");
             return Task.CompletedTask;
         }
     }
