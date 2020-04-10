@@ -65,7 +65,6 @@ namespace HotCode.StrongHold
                 c.RoutePrefix = string.Empty;
             });
 
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
