@@ -10,3 +10,6 @@ Run docker command from solution root `docker build -f ./HotCode.StrongHold/Dock
 
 ## Docker compose
 Create network before executing docker compose `docker network create hotcodenet`
+
+## GraphQL
+http://localhost:5000/ui/playground
