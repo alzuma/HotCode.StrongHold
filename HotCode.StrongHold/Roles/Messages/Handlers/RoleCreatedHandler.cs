@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using HotCode.StrongHold.Roles.Messages.Events;
-using HotCode.StrongHold.Systems.Messaging;
-using HotCode.StrongHold.Systems.Messaging.interfaces;
+using HotCode.System.Messaging;
+using HotCode.System.Messaging.interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 

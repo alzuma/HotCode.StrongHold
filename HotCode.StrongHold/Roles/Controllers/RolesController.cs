@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using HotCode.StrongHold.Roles.Messages.Commands;
-using HotCode.StrongHold.Systems;
-using HotCode.StrongHold.Systems.Messaging;
-using HotCode.StrongHold.Systems.Messaging.interfaces;
+using HotCode.System;
+using HotCode.System.Messaging;
+using HotCode.System.Messaging.interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

@@ -4,9 +4,9 @@ using Dapper;
 using HotCode.StrongHold.DB.interfaces;
 using HotCode.StrongHold.Roles.Messages.Commands;
 using HotCode.StrongHold.Roles.Messages.Events;
-using HotCode.StrongHold.Systems;
-using HotCode.StrongHold.Systems.Messaging;
-using HotCode.StrongHold.Systems.Messaging.interfaces;
+using HotCode.System;
+using HotCode.System.Messaging;
+using HotCode.System.Messaging.interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 

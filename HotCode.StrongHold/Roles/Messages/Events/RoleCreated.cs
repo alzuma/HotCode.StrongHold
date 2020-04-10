@@ -1,5 +1,4 @@
-﻿using HotCode.StrongHold.Systems.Messaging;
-using HotCode.StrongHold.Systems.Messaging.interfaces;
+﻿using HotCode.System.Messaging.interfaces;
 
 namespace HotCode.StrongHold.Roles.Messages.Events
 {

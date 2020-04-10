@@ -1,4 +1,4 @@
-using HotCode.StrongHold.Systems.Logging;
+using HotCode.System.Logging;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 

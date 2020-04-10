@@ -1,13 +1,12 @@
 using System;
 using System.IO;
 using System.Reflection;
-using GraphQL;
 using GraphQL.Server;
 using GraphQL.Server.Ui.Playground;
 using HotCode.StrongHold.Roles.Messages.Commands;
 using HotCode.StrongHold.Roles.Messages.Events;
 using HotCode.StrongHold.Schemas;
-using HotCode.StrongHold.Systems.Messaging.RedisMq;
+using HotCode.System.Messaging.RedisMq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
