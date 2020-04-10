@@ -29,7 +29,7 @@ GO
 CREATE TABLE [dbo].[Role]
 (
     [id]            [varchar](36)    NOT NULL,
-    [parentId]      [varchar](36)    NULL,
+    [parentId]      [varchar](36)    NOT NULL,
     [name]          [nvarchar](512)  NOT NULL,
     [description]   [nvarchar](max)  NOT NULL,
     [roleContextId] [varchar](36)    NOT NULL,
@@ -133,19 +133,17 @@ GO
 --- dbo.[Role] ---------------------------------------------------------------------------------------------------------
 declare @utcTimeStamp int = DATEDIFF(s, '1970-01-01', GETUTCDATE());
 declare @uid varchar(36) = '00000000-0000-0000-0000-000000000000';
-declare @utcTimeStampEmpty int = -1;
 
 insert into dbo.[Role]
 (id, parentId, [name], description, roleContextId, created, createdBy, modified, modifiedBy)
-values (@uid, NULL, 'Empty Role', 'Empty Role', @uid, @utcTimeStamp, @uid, @utcTimeStamp, @utcTimeStampEmpty)
+values (@uid, @uid, 'Empty Role', 'Empty Role', @uid, @utcTimeStamp, @uid, @utcTimeStamp, @uid)
 GO
 
 declare @utcTimeStamp int = DATEDIFF(s, '1970-01-01', GETUTCDATE());
 declare @uid varchar(36) = '00000000-0000-0000-0000-000000000000';
-declare @utcTimeStampEmpty int = -1;
 declare @pk varchar(36) = '9f0aa4d9-b780-4807-aebe-425a66d90a52';
 
 insert into dbo.[Role]
 (id, parentId, [name], description, roleContextId, created, createdBy, modified, modifiedBy)
-values (@pk, NULL, 'Root role', 'Root Role', @uid, @utcTimeStamp, @uid, @utcTimeStamp, @utcTimeStampEmpty)
+values (@pk, @uid, 'Root role', 'Root Role', @uid, @utcTimeStamp, @uid, @utcTimeStamp, @uid)
 GO

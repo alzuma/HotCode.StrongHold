@@ -9,10 +9,10 @@ namespace HotCode.StrongHold.Roles.Schemas.Types
     {
         public RoleType(IDataLoaderContextAccessor dataLoader, IRoleRepository roleRepository)
         {
-            Field(x => x.Id, false).Description("Unique Role Id");
-            Field(x => x.Name, false).Description("Role name");
+            Field(x => x.Id).Description("Unique Role Id");
+            Field(x => x.Name).Description("Role name");
             Field(x => x.Description).Description("Role description");
-            Field(x => x.ParentId, true).Description("Parent Id");
+            Field(x => x.ParentId).Description("Parent Id");
 
             Field<RoleType, RoleEntity>()
                 .Name("Parent")
@@ -24,7 +24,7 @@ namespace HotCode.StrongHold.Roles.Schemas.Types
                             "HotCode.StrongHold.Roles.Schemas.Types.RoleType",
                             roleRepository.GetByIdsLookupAsync);
                     
-                    return loader.LoadAsync(context.Source.ParentId ?? "-1");
+                    return loader.LoadAsync(context.Source.ParentId);
                 });
         }
     }

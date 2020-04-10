@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using GraphQL;
 using GraphQL.Types;
 using HotCode.StrongHold.Roles.Repositories.interfaces;
