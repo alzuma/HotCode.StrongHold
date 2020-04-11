@@ -2,13 +2,17 @@
 import {RoleListQuery} from '../../generated/graphql';
 import './styles.scss';
 
-interface Props {
+interface OwnProps {
+    handleIdChange: (newId: string) => void;
+}
+
+interface Props extends OwnProps {
     data: RoleListQuery;
 }
 
 const className = 'RoleList';
 
-const RoleList: React.FC<Props> = ({data}) => (
+const RoleList: React.FC<Props> = ({data, handleIdChange}) => (
     <div className={className}>
         <h3>Roles</h3>
         <ol className={`${className}__list`}>
@@ -16,7 +20,7 @@ const RoleList: React.FC<Props> = ({data}) => (
             data.roles.map(
                 (role, i) =>
                     !!role && (
-                        <li key={role.id} className={`${className}__item`}>
+                        <li key={role.id} className={`${className}__item`} onClick={() => handleIdChange(role.id)}>
                             {role.id} ({role.name})
                         </li>
                     ),
