@@ -14,7 +14,7 @@ const RoleContainer = () => {
     }
 
     if (!data) {
-        return <div>Select a flight from the panel</div>;
+        return <div>Select a role from the panel</div>;
     }
 
     return <Role data={data}/>;
