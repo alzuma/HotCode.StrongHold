@@ -26,11 +26,11 @@ namespace HotCode.StrongHold.Roles.Repositories
             return await connection.QueryAsync<RoleEntity>(sql);
         }
 
-        public async Task<IEnumerable<RoleEntity>> RoleByIdAsync(string roleId)
+        public async Task<RoleEntity> RoleByIdAsync(string roleId)
         {
             using var connection = _strongHoldDataBase.Get();
             const string sql = "select * from dbo.Role where id = @id";
-            return await connection.QueryAsync<RoleEntity>(sql, new {id = roleId});
+            return (await connection.QueryAsync<RoleEntity>(sql, new {id = roleId})).FirstOrDefault();
         }
 
         private async Task<IEnumerable<RoleEntity>> GetByIdsAsync(List<string> ids)

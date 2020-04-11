@@ -2,7 +2,7 @@
 
 export const QUERY_ROLE = gql` 
 query Role($id: ID) {
-  roles(id: $id) {
+  role(id: $id) {
     id
     name
     description

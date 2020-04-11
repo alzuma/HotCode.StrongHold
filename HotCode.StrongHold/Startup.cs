@@ -29,6 +29,14 @@ namespace HotCode.StrongHold
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", cors =>
+                    cors.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
+            
             services.AddScoped<RbacSchema>();
 
             services.AddGraphQL(x => { x.ExposeExceptions = true; })
@@ -58,6 +66,7 @@ namespace HotCode.StrongHold
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors("CorsPolicy");
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

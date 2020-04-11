@@ -54,11 +54,12 @@ export type Scalars = {
 
 export type CompositeQuery = {
    __typename?: 'CompositeQuery';
+  role?: Maybe<RoleType>;
   roles?: Maybe<Array<Maybe<RoleType>>>;
 };
 
 
-export type CompositeQueryRolesArgs = {
+export type CompositeQueryRoleArgs = {
   id?: Maybe<Scalars['ID']>;
 };
 
@@ -83,20 +84,20 @@ export type RoleQueryVariables = {
 
 export type RoleQuery = (
   { __typename?: 'CompositeQuery' }
-  & { roles?: Maybe<Array<Maybe<(
+  & { role?: Maybe<(
     { __typename?: 'RoleType' }
     & Pick<RoleType, 'id' | 'name' | 'description'>
     & { parent?: Maybe<(
       { __typename?: 'RoleType' }
       & Pick<RoleType, 'id' | 'name'>
     )> }
-  )>>> }
+  )> }
 );
 
-export type RolesListQueryVariables = {};
+export type RoleListQueryVariables = {};
 
 
-export type RolesListQuery = (
+export type RoleListQuery = (
   { __typename?: 'CompositeQuery' }
   & { roles?: Maybe<Array<Maybe<(
     { __typename?: 'RoleType' }
@@ -107,7 +108,7 @@ export type RolesListQuery = (
 
 export const RoleDocument = gql`
     query Role($id: ID) {
-  roles(id: $id) {
+  role(id: $id) {
     id
     name
     description
@@ -163,8 +164,8 @@ export function useRoleLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOpt
 export type RoleQueryHookResult = ReturnType<typeof useRoleQuery>;
 export type RoleLazyQueryHookResult = ReturnType<typeof useRoleLazyQuery>;
 export type RoleQueryResult = ApolloReactCommon.QueryResult<RoleQuery, RoleQueryVariables>;
-export const RolesListDocument = gql`
-    query RolesList {
+export const RoleListDocument = gql`
+    query RoleList {
   roles {
     id
     name
@@ -172,47 +173,47 @@ export const RolesListDocument = gql`
   }
 }
     `;
-export type RolesListComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<RolesListQuery, RolesListQueryVariables>, 'query'>;
+export type RoleListComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<RoleListQuery, RoleListQueryVariables>, 'query'>;
 
-    export const RolesListComponent = (props: RolesListComponentProps) => (
-      <ApolloReactComponents.Query<RolesListQuery, RolesListQueryVariables> query={RolesListDocument} {...props} />
+    export const RoleListComponent = (props: RoleListComponentProps) => (
+      <ApolloReactComponents.Query<RoleListQuery, RoleListQueryVariables> query={RoleListDocument} {...props} />
     );
     
-export type RolesListProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<RolesListQuery, RolesListQueryVariables>
+export type RoleListProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<RoleListQuery, RoleListQueryVariables>
     } & TChildProps;
-export function withRolesList<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+export function withRoleList<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
   TProps,
-  RolesListQuery,
-  RolesListQueryVariables,
-  RolesListProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, RolesListQuery, RolesListQueryVariables, RolesListProps<TChildProps, TDataName>>(RolesListDocument, {
-      alias: 'rolesList',
+  RoleListQuery,
+  RoleListQueryVariables,
+  RoleListProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, RoleListQuery, RoleListQueryVariables, RoleListProps<TChildProps, TDataName>>(RoleListDocument, {
+      alias: 'roleList',
       ...operationOptions
     });
 };
 
 /**
- * __useRolesListQuery__
+ * __useRoleListQuery__
  *
- * To run a query within a React component, call `useRolesListQuery` and pass it any options that fit your needs.
- * When your component renders, `useRolesListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useRoleListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useRoleListQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useRolesListQuery({
+ * const { data, loading, error } = useRoleListQuery({
  *   variables: {
  *   },
  * });
  */
-export function useRolesListQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<RolesListQuery, RolesListQueryVariables>) {
-        return ApolloReactHooks.useQuery<RolesListQuery, RolesListQueryVariables>(RolesListDocument, baseOptions);
+export function useRoleListQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<RoleListQuery, RoleListQueryVariables>) {
+        return ApolloReactHooks.useQuery<RoleListQuery, RoleListQueryVariables>(RoleListDocument, baseOptions);
       }
-export function useRolesListLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<RolesListQuery, RolesListQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<RolesListQuery, RolesListQueryVariables>(RolesListDocument, baseOptions);
+export function useRoleListLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<RoleListQuery, RoleListQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<RoleListQuery, RoleListQueryVariables>(RoleListDocument, baseOptions);
         }
-export type RolesListQueryHookResult = ReturnType<typeof useRolesListQuery>;
-export type RolesListLazyQueryHookResult = ReturnType<typeof useRolesListLazyQuery>;
-export type RolesListQueryResult = ApolloReactCommon.QueryResult<RolesListQuery, RolesListQueryVariables>;
+export type RoleListQueryHookResult = ReturnType<typeof useRoleListQuery>;
+export type RoleListLazyQueryHookResult = ReturnType<typeof useRoleListLazyQuery>;
+export type RoleListQueryResult = ApolloReactCommon.QueryResult<RoleListQuery, RoleListQueryVariables>;

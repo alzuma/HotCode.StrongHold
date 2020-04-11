@@ -9,11 +9,11 @@ using Microsoft.Extensions.DependencyInjection;
 namespace HotCode.StrongHold.Roles.Schemas
 {
     [ServiceLocator.Service(ServiceLifetime.Scoped)]
-    public class RoleQuery : ObjectGraphType, IGraphQueryMarker
+    public class RoleQuery: ObjectGraphType, IGraphQueryMarker
     {
         public RoleQuery(IRoleRepository roleRepository)
         {
-            FieldAsync<ListGraphType<RoleType>>("roles",
+            FieldAsync<RoleType>("role",
                 resolve: async context =>
                 {
                     var id = context.GetArgument<string>("id");
@@ -23,7 +23,7 @@ namespace HotCode.StrongHold.Roles.Schemas
                         return await roleRepository.RoleByIdAsync(id);
                     }
 
-                    return await roleRepository.RolesAsync();
+                    return null;
                 },
                 arguments: new QueryArguments(new List<QueryArgument>
                 {
