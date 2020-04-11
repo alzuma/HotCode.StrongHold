@@ -1,7 +1,9 @@
 import React from 'react';
-import './App.css';
 import RoleListContainer from "./components/roles/RoleListContainer";
 import RoleContainer from "./components/role/RoleContainer";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { Router, Route, Switch, Redirect, Link } from "react-router-dom";
+import {createBrowserHistory} from "history"
 
 function App() {
 
@@ -10,10 +12,18 @@ function App() {
         setId(newId);
     }, []);
 
+    const history = createBrowserHistory();
+    
     return (
         <div className="App">
-            <RoleListContainer handleIdChange={handleIdChange}/>
-            <RoleContainer id={id}/>
+            <Router history={history}>
+                <Switch>
+                    <Route exact path="/">
+                        <RoleListContainer handleIdChange={handleIdChange}/>
+                    </Route>
+                    <Route path="/:id" children={<RoleContainer />} />
+                </Switch>
+            </Router >
         </div>
     );
 }

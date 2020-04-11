@@ -1,17 +1,17 @@
 ﻿import * as React from 'react';
 import {useRoleQuery} from '../../generated/graphql';
 import Role from './Role';
+import { useParams } from 'react-router-dom';
 
-interface Props {
-    id: string;
-}
 
-const RoleContainer = ({id}: Props) => {
+const RoleContainer = () => {
+    let { id } = useParams();
+    
     const {data, error, loading} = useRoleQuery({
         variables: {
             id: String(id)
         },
-        skip: id.length === 0
+        skip: id?.length === 0
     });
 
     if (loading) {

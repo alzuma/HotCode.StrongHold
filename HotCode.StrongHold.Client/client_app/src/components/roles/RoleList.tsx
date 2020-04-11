@@ -1,6 +1,7 @@
 ﻿import * as React from 'react';
 import {RoleListQuery} from '../../generated/graphql';
 import './styles.scss';
+import {Link} from "react-router-dom";
 
 interface OwnProps {
     handleIdChange: (newId: string) => void;
@@ -20,9 +21,11 @@ const RoleList: React.FC<Props> = ({data, handleIdChange}) => (
             data.roles.map(
                 (role, i) =>
                     !!role && (
-                        <li key={role.id} className={`${className}__item`} onClick={() => handleIdChange(role.id)}>
-                            {role.id} ({role.name})
-                        </li>
+                        <Link to={`/${role.id}`}>
+                            <li key={role.id} className={`${className}__item`}>
+                                {role.id} ({role.name})
+                            </li>
+                        </Link>
                     ),
             )}
         </ol>

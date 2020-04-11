@@ -20,14 +20,6 @@
         <Content Include="client_app\src\components\role\styles.scss" />
         <None Remove="$(SpaRoot)**" />
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
-        <None Include="client_app\src\components\roles\index.tsx" />
-        <None Include="client_app\src\components\roles\query.ts" />
-        <None Include="client_app\src\components\roles\RoleListContainer.tsx" />
-        <None Include="client_app\src\components\roles\RolesList.tsx" />
-        <None Include="client_app\src\components\role\index.tsx" />
-        <None Include="client_app\src\components\role\query.ts" />
-        <None Include="client_app\src\components\role\Role.tsx" />
-        <None Include="client_app\src\components\role\RoleContainer.tsx" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
