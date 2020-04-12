@@ -7,23 +7,36 @@ import {StrongHoldRoutes} from "../../routes";
 import {NavLink} from "react-router-dom";
 import {makeStyles} from '@material-ui/core/styles';
 
-import styles from "./sidebarStyle";
-
-
 import backgroundImage from "../../assests/img/sidebar-2.jpg";
+import styles from "./sidebarStyle";
+import classNames from "classnames";
 
 interface Props {
     routes: StrongHoldRoutes
 }
 
+
+
 const useStyles = makeStyles(styles);
 
-const Sidebar: React.FC<Props> = ({routes}) => {
-    const classes = useStyles();
 
+
+const Sidebar: React.FC<Props> = ({routes}) => {
+    const activeRoute = (routeName:string) => {
+        return window.location.href.indexOf(routeName) > -1;
+    };
+    
+    const classes = useStyles();
+    let listItemClasses;
+    
     const links = (
         <List className={classes.list}>
             {routes.map((route, index, array) => {
+
+                listItemClasses = classNames({
+                    [" " + classes.blue]: activeRoute(route.layout + route.path)
+                });
+                
                 return (
                     <NavLink
                         to={route.layout + route.path}
@@ -31,7 +44,7 @@ const Sidebar: React.FC<Props> = ({routes}) => {
                         key={index}
                         className={classes.item}
                     >
-                        <ListItem button className={classes.itemLink + " " + classes.blue}>
+                        <ListItem button className={classes.itemLink + listItemClasses}>
                             <route.icon className={classes.itemIcon}/>
                             <ListItemText
                                 className={classes.itemText}
