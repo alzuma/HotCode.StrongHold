@@ -16,11 +16,11 @@
     <ItemGroup>
         <!-- Don't publish the SPA source files, but do show them in the project files list -->
         <Content Remove="$(SpaRoot)**" />
+        <TypeScriptCompile Include="client_app\src\assests\dashboard.ts" />
+        <Content Include="client_app\src\assests\img\sidebar-2.jpg" />
         <Content Include="client_app\src\components\roles\styles.scss" />
         <Content Include="client_app\src\components\role\styles.scss" />
-        <Content Include="client_app\src\components\sidebar\styles.scss" />
-        <Content Include="client_app\src\index.scss" />
-        <Content Include="client_app\src\layouts\styles.scss" />
+        <TypeScriptCompile Include="client_app\src\components\sidebar\sidebarStyle.ts" />
         <None Remove="$(SpaRoot)**" />
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
         <None Include="client_app\src\components\sidebar\Sidebar.tsx" />
@@ -28,6 +28,7 @@
         <None Include="client_app\src\routes.tsx" />
         <None Include="client_app\src\views\Dashboard\DashboardPage.tsx" />
         <None Include="client_app\src\views\Role\RolePage.tsx" />
+        <TypeScriptCompile Include="client_app\src\layouts\adminStyle.ts" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

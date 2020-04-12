@@ -1,8 +1,10 @@
-﻿import "./styles.scss"
-import * as React from 'react';
+﻿import * as React from 'react';
 import {Route, Switch, Redirect} from "react-router-dom";
 import routes from "../routes";
 import Sidebar from "../components/sidebar/Sidebar";
+
+import styles from "./adminStyle";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const switchRoutes = (
     <Switch>
@@ -22,13 +24,19 @@ const switchRoutes = (
     </Switch>
 );
 
-function Admin() {
+const useStyles = makeStyles(styles);
 
+function Admin() {
+    const classes = useStyles();
     return (
-        <>
+        <div className={classes.wrapper}>
             <Sidebar routes={routes}/>
-            <div className="content">{switchRoutes}</div>
-        </>
+            <div className={classes.mainPanel}>
+                <div className={classes.content}>
+                    <div className={classes.container}>{switchRoutes}</div>
+                </div>
+            </div>
+        </div>
     )
 }
 
