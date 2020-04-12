@@ -17,9 +17,19 @@
         <!-- Don't publish the SPA source files, but do show them in the project files list -->
         <Content Remove="$(SpaRoot)**" />
         <TypeScriptCompile Include="client_app\src\assests\dashboard.ts" />
+        <Content Include="client_app\.prettierrc" />
         <Content Include="client_app\src\assests\img\sidebar-2.jpg" />
+        <TypeScriptCompile Include="client_app\src\assests\dropdownStyle.ts" />
+        <TypeScriptCompile Include="client_app\src\components\custom-buttons\RegularButton.tsx" />
+        <TypeScriptCompile Include="client_app\src\components\custom-buttons\regularButtonStyles.ts" />
+        <TypeScriptCompile Include="client_app\src\components\navigation\NavigationBar.tsx" />
+        <TypeScriptCompile Include="client_app\src\components\navigation\navigationBarStyle.ts" />
+        <TypeScriptCompile Include="client_app\src\components\custom-input\CustomInput.tsx" />
+        <TypeScriptCompile Include="client_app\src\components\custom-input\customInputStyle.ts" />
         <Content Include="client_app\src\components\roles\styles.scss" />
         <Content Include="client_app\src\components\role\styles.scss" />
+        <TypeScriptCompile Include="client_app\src\components\navigation\NavigationTools.tsx" />
+        <TypeScriptCompile Include="client_app\src\components\navigation\navigationToolsStyle.ts" />
         <TypeScriptCompile Include="client_app\src\components\sidebar\sidebarStyle.ts" />
         <None Remove="$(SpaRoot)**" />
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />

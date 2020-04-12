@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ApolloClient from 'apollo-boost';
-import {ApolloProvider} from 'react-apollo';
-import {ApolloProvider as ApolloHooksProvider} from 'react-apollo-hooks';
+import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider as ApolloHooksProvider } from 'react-apollo-hooks';
 import * as serviceWorker from './serviceWorker';
-import Admin from "./layouts/Admin";
-import { Router, Route, Switch, Redirect} from "react-router-dom";
-import {createBrowserHistory} from "history";
-import {CssBaseline} from "@material-ui/core";
+import Admin from './layouts/Admin';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import { CssBaseline } from '@material-ui/core';
 
 const client = new ApolloClient({
     uri: 'http://localhost:5000/graphql',
