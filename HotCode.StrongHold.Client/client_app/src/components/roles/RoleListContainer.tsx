@@ -2,11 +2,7 @@
 import { useRoleListQuery } from '../../generated/graphql';
 import RoleList from './RoleList';
 
-export interface OwnProps {
-    handleIdChange: (newId: string) => void;
-}
-
-const RoleListContainer = (props: OwnProps) => {
+const RoleListContainer = () => {
     const { data, error, loading } = useRoleListQuery();
 
     if (loading) {
@@ -17,7 +13,7 @@ const RoleListContainer = (props: OwnProps) => {
         return <div>ERROR</div>;
     }
 
-    return <RoleList data={data} {...props} />;
+    return <RoleList data={data} />;
 };
 
 export default RoleListContainer;

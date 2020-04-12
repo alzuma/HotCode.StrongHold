@@ -3,17 +3,13 @@ import {RoleListQuery} from '../../generated/graphql';
 import './styles.scss';
 import {Link} from "react-router-dom";
 
-interface OwnProps {
-    handleIdChange: (newId: string) => void;
-}
-
-interface Props extends OwnProps {
+interface Props {
     data: RoleListQuery;
 }
 
 const className = 'RoleList';
 
-const RoleList: React.FC<Props> = ({data, handleIdChange}) => (
+const RoleList: React.FC<Props> = ({data}) => (
     <div className={className}>
         <h3>Roles</h3>
         <ol className={`${className}__list`}>

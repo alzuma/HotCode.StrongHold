@@ -18,8 +18,16 @@
         <Content Remove="$(SpaRoot)**" />
         <Content Include="client_app\src\components\roles\styles.scss" />
         <Content Include="client_app\src\components\role\styles.scss" />
+        <Content Include="client_app\src\components\sidebar\styles.scss" />
+        <Content Include="client_app\src\index.scss" />
+        <Content Include="client_app\src\layouts\styles.scss" />
         <None Remove="$(SpaRoot)**" />
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+        <None Include="client_app\src\components\sidebar\Sidebar.tsx" />
+        <None Include="client_app\src\layouts\Admin.tsx" />
+        <None Include="client_app\src\routes.tsx" />
+        <None Include="client_app\src\views\Dashboard\DashboardPage.tsx" />
+        <None Include="client_app\src\views\Role\RolePage.tsx" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
