@@ -37,7 +37,10 @@
         <None Include="client_app\src\layouts\Admin.tsx" />
         <None Include="client_app\src\routes.tsx" />
         <None Include="client_app\src\views\Dashboard\DashboardPage.tsx" />
+        <None Include="client_app\src\views\Role\RoleTable.tsx" />
         <None Include="client_app\src\views\Role\RolePage.tsx" />
+        <TypeScriptCompile Include="client_app\src\components\table\CustomTable.tsx" />
+        <TypeScriptCompile Include="client_app\src\components\table\customTableStyle.ts" />
         <TypeScriptCompile Include="client_app\src\layouts\adminStyle.ts" />
     </ItemGroup>
 
